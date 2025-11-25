@@ -59,4 +59,4 @@ jobs:
           git pull origin main
           docker-compose down
           docker-compose up -d --build
-          echo "🚀 Deployment to Azure VM completed!"
+          echo "Deployment to Azure VM completed!"
