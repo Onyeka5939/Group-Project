@@ -1,10 +1,11 @@
+#yml file for tests
 name: Python CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "development" ]
 
 jobs:
   build:

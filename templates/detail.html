@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--page for details of product-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item.name }} - Item Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            padding: 30px;
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .detail-group {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .label {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .value {
+            font-size: 18px;
+            margin-top: 5px;
+            color: #333;
+        }
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #764ba2;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .delete-form {
+            display: inline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 {{ item.name }}</h1>
+        
+        <div class="details">
+            <div class="label">Item Name</div>
+            <div class="value">{{ item.name }}</div>
+        </div>
+        
+        <div class="details">
+            <div class="label">Description</div>
+            <div class="value">{{ item.description or 'No description provided' }}</div>
+        </div>
+        
+        <div class="detail">
+            <div class="label">Price</div>
+            <div class="value">${{ "%.2f"|format(item.price) }}</div>
+        </div>
+        
+        <div class="detail">
+            <div class="label">Quantity in Stock</div>
+            <div class="value">{{ item.quantity }} units</div>
+        </div>
+        
+        <div class="controls">
+            <a href="/items/{{ item.id }}/edit" class="btn btn-primary">✏️ Edit</a>
+            <form method="POST" action="/items/{{ item.id }}/delete" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <button type="submit" class="btn btn-danger">🗑️ Delete</button>
+            </form>
+            <a href="/items" class="btn btn-secondary">← Back to List</a>
+        </div>
+        
+        
+    </div>
+</body>
+</html>
