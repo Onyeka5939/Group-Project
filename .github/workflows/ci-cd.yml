@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, development ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, development ]
 
 jobs:
   build-and-test:
@@ -31,11 +31,16 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t flask-devops-app:${{ github.sha }} .
+    
+    - name: Build success notification
+      run: |
+        echo "Build completed successfully!"
+        echo "All tests passed!"
 
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:
     - name: Checkout code
@@ -48,7 +53,8 @@ jobs:
         username: ${{ secrets.AZURE_VM_USERNAME }}
         key: ${{ secrets.AZURE_VM_SSH_KEY }}
         script: |
-          cd /home/${{ secrets.AZURE_VM_USERNAME }}/flask-devops-project
+          cd ~/Group-Project
           git pull origin main
           docker-compose down
           docker-compose up -d --build
+          echo "Deployment to Azure VM completed!"
