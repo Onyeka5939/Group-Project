@@ -16,7 +16,7 @@ This is a simple Flask web application that we're deploying using Docker and CI/
 .
 |-- app.py                  # Main Flask application
 |-- templates/
-â”‚   |-- index.html         # Homepage template
+|   |-- index.html         # Homepage template
 |-- Dockerfile             # Docker configuration
 |-- docker-compose.yml     # Docker Compose setup
 |-- requirements.txt       # Python dependencies
