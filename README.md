@@ -14,17 +14,17 @@ This is a simple Flask web application that we're deploying using Docker and CI/
 ## Project Structure
 
 .
-|-- app.py                  # Main Flask application
-|-- templates/
-|   |-- index.html         # Homepage template
-|-- Dockerfile             # Docker configuration
-|-- docker-compose.yml     # Docker Compose setup
-|-- requirements.txt       # Python dependencies
-|-- .github/
-|   â””â”€â”€ workflows/
-|       â””â”€â”€ ci-cd.yml     # GitHub Actions pipeline
-|-- tests/
-    |-- test_app.py       # Unit tests
+├── app.py                  # Main Flask application
+├── templates/
+│   └── index.html         # Homepage template
+├── Dockerfile             # Docker configuration
+├── docker-compose.yml     # Docker Compose setup
+├── requirements.txt       # Python dependencies
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml     # GitHub Actions pipeline
+└── tests/
+    └── test_app.py       # Unit tests
 
 
 ## Running the App Locally
